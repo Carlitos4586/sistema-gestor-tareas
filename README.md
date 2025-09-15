@@ -73,51 +73,76 @@ python -m pytest tests/test_tarea.py -v
 
 ```
 sistema_tareas/
+├── cli_main.py         # 🎯 PUNTO DE ENTRADA PRINCIPAL
 ├── src/
-│   ├── models/          # Clases principales (Usuario, Tarea)
-│   ├── services/        # Lógica de negocio
-│   ├── utils/           # Utilidades y helpers
-│   └── main.py         # Punto de entrada
+│   ├── cli/            # Interfaz de línea de comandos
+│   ├── models/         # Clases principales (Usuario, Tarea)
+│   ├── services/       # Lógica de negocio
+│   └── utils/          # Utilidades y helpers
 ├── data/
 │   ├── json/           # Archivos JSON
 │   ├── binarios/       # Archivos binarios (pickle)
-│   └── backups/        # Respaldos
-├── tests/              # Pruebas unitarias
-├── docs/               # Documentación
+│   └── backups/        # Respaldos automáticos
+├── tests/              # Pruebas unitarias (146 tests)
 ├── requirements.txt    # Dependencias
 ├── .gitignore         # Archivos a ignorar en git
-└── README.md          # Este archivo
+├── README.md          # Este archivo
+├── MANUAL_USUARIO.md   # Guía completa de usuario
+└── DOCUMENTACION_TECNICA.md # Documentación técnica
 ```
 
-## 💻 Uso Básico
+## 💻 Uso del Sistema
 
-### Importar las clases principales
+### 🎯 Ejecución Principal (CLI Interactivo)
+
+```bash
+# Ejecutar el sistema completo
+python cli_main.py
+```
+
+### 📚 Uso Programático (Para Desarrolladores)
 
 ```python
-from src.models.usuario import Usuario
-from src.models.tarea import Tarea, EstadoTarea
+# Importar desde el directorio src
+import sys
+sys.path.append('src')
+
+from models.usuario import Usuario
+from models.tarea import Tarea, EstadoTarea
+from services.gestor_sistema import GestorSistema
 from datetime import datetime, timedelta
 
+# Crear gestor del sistema
+gestor = GestorSistema()
+
 # Crear un usuario
-usuario = Usuario("Juan Pérez", "juan@email.com")
+usuario = gestor.crear_usuario("Juan Pérez", "juan@email.com")
 
 # Crear una tarea
 fecha_limite = datetime.now() + timedelta(days=7)
-tarea = Tarea("Desarrollar API", "Crear endpoints REST", fecha_limite, usuario.id)
+tarea = gestor.crear_tarea(
+    "Desarrollar API",
+    "Crear endpoints REST",
+    fecha_limite,
+    usuario.id
+)
 
-# Cambiar estado de tarea
-tarea.cambiar_estado(EstadoTarea.EN_PROGRESO)
-
-# Asignar tarea al usuario
-usuario.agregar_tarea(tarea.id)
+# El sistema guarda automáticamente los cambios
 ```
 
-### Ejecutar el sistema completo
+### 🚀 Ejecutar el Sistema Interactivo (CLI)
 
-```python
-# Una vez implementado el main.py
-python src/main.py
+```bash
+# Comando principal para ejecutar el CLI
+python cli_main.py
 ```
+
+Esto abrirá el menú interactivo completo con todas las funcionalidades:
+- 👥 Gestión de usuarios
+- 📋 Gestión de tareas
+- 📊 Reportes y estadísticas
+- 🔍 Búsquedas avanzadas
+- ⚙️ Configuración del sistema
 
 ### 🆕 Usar el Sistema de Logging
 
@@ -135,14 +160,17 @@ log_error("Error de validación", "Email inválido")
 # Los logs se guardan automáticamente en: logs/sistema_tareas.log
 ```
 
-### 📝 Demo del Sistema de Logging
+### 📝 Verificar Funcionamiento
 
 ```bash
-# Ejecutar demostración completa de logging
-python demo_logging.py
+# Ejecutar todas las pruebas
+python -m pytest tests/ -v
 
-# Ver archivo de logs generado
-cat logs/sistema_tareas.log
+# Ejecutar el CLI principal
+python cli_main.py
+
+# Ver datos generados (después de usar el CLI)
+ls -la data/
 ```
 
 ## 🧪 Conceptos de Python Implementados

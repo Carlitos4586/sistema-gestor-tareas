@@ -54,13 +54,11 @@
 
 ```
 sistema_tareas/
+├── 🎯 cli_main.py                   # ⭐ PUNTO DE ENTRADA PRINCIPAL
 ├── 📄 README.md                      # Documentación de usuario
+├── 📄 MANUAL_USUARIO.md             # Guía completa de usuario
 ├── 📄 DOCUMENTACION_TECNICA.md       # Este archivo
-├── 📄 PROYECTO_COMPLETADO.md         # Estado del proyecto
 ├── 📄 requirements.txt               # Dependencias Python
-├── 📄 demo_simple.py                 # Demostración funcional
-├── 📄 ejemplo_uso.py                 # Ejemplos de uso avanzado
-├── 📄 test_gestor_completo.py        # Tests de integración
 │
 ├── 📁 src/                           # CÓDIGO FUENTE PRINCIPAL
 │   ├── 📄 __init__.py                # Configuración del paquete
@@ -95,13 +93,70 @@ sistema_tareas/
 │   ├── 📁 binarios/                  # Archivos pickle
 │   └── 📁 backups/                   # Respaldos automáticos
 │
-├── 📁 data_demo/                     # DATOS DE DEMOSTRACIÓN
-│   ├── 📁 json/                      # Ejemplos JSON
-│   ├── 📁 binarios/                  # Ejemplos binarios
-│   └── 📁 backups/                   # Ejemplos de backups
+│
+└── 📁 src/cli/                      # INTERFAZ DE LÍNEA DE COMANDOS
+    ├── 📄 __init__.py
+    ├── 📄 main.py                  # CLI interno
+    ├── 📄 menu_principal.py        # Menú principal
+    ├── 📄 menu_usuarios.py          # Gestión de usuarios
+    ├── 📄 menu_tareas.py            # Gestión de tareas
+    ├── 📄 menu_busquedas.py         # Búsquedas y filtros
+    ├── 📄 menu_reportes.py          # Reportes y estadísticas
+    ├── 📄 menu_configuracion.py     # Configuración del sistema
+    └── 📄 cli_utils.py              # Utilidades del CLI
 │
 ├── 📁 docs/                          # DOCUMENTACIÓN ADICIONAL
 └── 📁 venv/                          # ENTORNO VIRTUAL PYTHON
+```
+
+---
+
+## 🚀 Ejecución del Sistema
+
+### 🎯 Comando Principal
+
+```bash
+# Ejecutar el CLI interactivo completo
+python cli_main.py
+```
+
+**Este comando:**
+- Lanza el menú principal interactivo
+- Carga datos existentes automáticamente
+- Proporciona acceso a todas las funcionalidades
+- Guarda cambios automáticamente al salir
+
+### 🧪 Ejecución de Pruebas
+
+```bash
+# Ejecutar todas las pruebas (146 tests)
+python -m pytest tests/ -v
+
+# Pruebas específicas por módulo
+python -m pytest tests/test_usuario.py -v
+python -m pytest tests/test_tarea.py -v
+python -m pytest tests/test_gestor_sistema.py -v
+
+# Con cobertura de código
+python -m pytest tests/ --cov=src/ --cov-report=html
+```
+
+### 💻 Uso Programático
+
+```python
+# Para desarrolladores que quieren usar las clases directamente
+import sys
+sys.path.append('src')
+
+from services.gestor_sistema import GestorSistema
+from datetime import datetime, timedelta
+
+# Crear instancia del gestor
+gestor = GestorSistema()
+
+# Usar las funcionalidades
+usuario = gestor.crear_usuario("Carlos", "carlos@empresa.com")
+tarea = gestor.crear_tarea("Nueva tarea", "Descripción", datetime.now() + timedelta(days=7))
 ```
 
 ---

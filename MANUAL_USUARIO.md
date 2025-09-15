@@ -65,11 +65,14 @@ pip install -r requirements.txt
 #### **Paso 4: Verificar Instalación**
 
 ```bash
-# Ejecutar demostración
-python demo_simple.py
+# Ejecutar pruebas del sistema
+python -m pytest tests/ -v
+
+# Si todas las pruebas pasan, ejecutar el CLI
+python cli_main.py
 ```
 
-Si ves el mensaje "🎉 EJECUCIÓN COMPLETADA", ¡la instalación fue exitosa!
+Si ves el menú interactivo del sistema, ¡la instalación fue exitosa!
 
 ---
 
@@ -77,31 +80,120 @@ Si ves el mensaje "🎉 EJECUCIÓN COMPLETADA", ¡la instalación fue exitosa!
 
 ### 🌟 **Tu Primera Experiencia**
 
-#### **Ejecutar el Sistema**
+#### **🚀 Ejecutar el Sistema**
 
 ```bash
-python demo_simple.py
+python cli_main.py
 ```
 
-Esta ejecución mostrará:
+Esta ejecución mostrará el **menú interactivo completo** con:
 
-- ✅ Cómo se crean usuarios automáticamente
-- ✅ Cómo se formatean los nombres
-- ✅ Cómo se crean y asignan tareas
-- ✅ Cómo se generan reportes profesionales
+- ✅ **Menú de Usuarios**: Crear, listar y gestionar usuarios
+- ✅ **Menú de Tareas**: CRUD completo de tareas
+- ✅ **Reportes Visuales**: Dashboards y estadísticas
+- ✅ **Búsquedas**: Filtros avanzados por estado, usuario, fecha
+- ✅ **Configuración**: Ajustes del sistema
+- ✅ **Persistencia Automática**: Guarda todos los cambios
 
-#### **Explorar los Datos Generados**
+#### **📁 Explorar los Datos Generados**
 
-Después de la ejecución, encontrarás:
+Después de usar el sistema, encontrarás:
 
 ```
-data_demo/
+data/
 ├── json/           # Archivos legibles
-│   ├── usuarios.json
-│   └── tareas.json
-├── binarios/       # Archivos de respaldo
-└── backups/        # Copias de seguridad
+│   ├── usuarios.json   # Usuarios creados
+│   └── tareas.json     # Tareas del sistema
+├── binarios/       # Archivos de respaldo binario
+│   ├── usuarios.pkl
+│   └── tareas.pkl
+└── backups/        # Copias de seguridad automáticas
 ```
+
+📝 **Los archivos JSON son legibles** - puedes abrirlos con cualquier editor de texto.
+
+---
+
+## 🎮 **Guía del CLI Interactivo**
+
+### 🎯 **Menú Principal**
+
+Al ejecutar `python cli_main.py` verás el menú principal:
+
+```
+🎯 Sistema de Gestión de Tareas v1.0
+Desarrollado por: Carlos Bermúdez
+==================================================
+
+╔══════════════════════════════════════════════════╗
+║             🎯 MENÚ PRINCIPAL                    ║
+╠══════════════════════════════════════════════════╣
+║  1. 👥 Gestión de Usuarios                      ║
+║  2. 📋 Gestión de Tareas                        ║
+║  3. 🔍 Búsquedas y Filtros                      ║
+║  4. 📊 Reportes y Estadísticas                  ║
+║  5. ⚙️  Configuración                            ║
+║  0. 🚪 Salir                                    ║
+╚══════════════════════════════════════════════════╝
+```
+
+### 👥 **1. Gestión de Usuarios**
+
+**Opciones disponibles:**
+- **Crear usuario**: Agrega nuevos usuarios al sistema
+- **Listar usuarios**: Ve todos los usuarios registrados
+- **Buscar usuario**: Encuentra usuarios por email
+- **Ver estadísticas**: Estadísticas de cada usuario
+
+**Ejemplo de uso:**
+1. Selecciona opción `1` en el menú principal
+2. Elige `1. Crear usuario`
+3. Introduce nombre completo: `Carlos Bermúdez`
+4. Introduce email: `carlos@empresa.com`
+5. ¡Usuario creado exitosamente!
+
+### 📋 **2. Gestión de Tareas**
+
+**Opciones disponibles:**
+- **Crear tarea**: Nueva tarea con título, descripción y fecha límite
+- **Listar tareas**: Ver todas las tareas del sistema
+- **Cambiar estado**: Pendiente → En Progreso → Completada
+- **Asignar/Reasignar**: Asignar tareas a usuarios
+- **Eliminar tarea**: Remover tareas del sistema
+
+**Flujo típico de trabajo:**
+1. Crear usuarios primero (si no existen)
+2. Crear tareas especificando: título, descripción, fecha límite
+3. Asignar tareas a usuarios específicos
+4. Cambiar estado según progreso: `pendiente` → `en_progreso` → `completada`
+
+### 🔍 **3. Búsquedas y Filtros**
+
+**Opciones de búsqueda:**
+- **Por texto**: Busca en títulos y descripciones
+- **Por estado**: Filtra por pendiente, en progreso, completada
+- **Por usuario**: Ve tareas asignadas a usuario específico
+- **Por fecha**: Tareas creadas en rango de fechas
+- **Próximas a vencer**: Tareas urgentes
+
+### 📊 **4. Reportes y Estadísticas**
+
+**Reportes disponibles:**
+- **Dashboard ejecutivo**: Resumen general del sistema
+- **Reporte de tareas**: Lista detallada con filtros
+- **Reporte de usuarios**: Estadísticas por usuario
+- **Reporte de productividad**: Análisis de eficiencia
+- **Vista calendario**: Fechas límite organizadas
+
+### ⚙️ **5. Configuración**
+
+**Opciones de configuración:**
+- **Ver configuración actual**: Paths, formatos, etc.
+- **Gestión de respaldos**: Ver y gestionar backups
+- **Limpiar datos**: Reiniciar sistema (con confirmación)
+- **Exportar datos**: Exportar a CSV u otros formatos
+
+---
 
 ### 📖 **Conceptos Básicos**
 
